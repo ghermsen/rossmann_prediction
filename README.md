@@ -18,17 +18,17 @@ Esse projeto segue a mesma proposta sujerida na competição do [Kaggle](https:/
 
 ## Table of Contents
 - [Project Methodology](#project-methodology)
-- [01. The Problem and the Solution](#the-problem-and-the-solution)
-- [02. Data Understanding and Data Preparation](#data-understanding-and-data-preparation)
-- [03. Feature Engineering](#feature-engineering)
-- [04. Exploratory Data Analysis](exploratory-data-analysis)
-- [05. Data Preprocessing](#data-preprocessing)
-- [06. Feature Selection](#feature-selection)
-- [07. Machine Learning Modeling](#machine-learning-modeling)
-- [08. Hyperparameter Tuning](#hyperparameter-tuning)
-- [09. Understanding the Error and Business Performance](#understanding-the-error-and-business-performance)
-- [10. Final Model Deployment](#final-model-deployment)
-- [11. The Final Solution](#the-final-solution)
+- [01. The Problem and the Solution](#01-the-problem-and-the-solution)
+- [02. Data Understanding and Data Preparation](#02-data-understanding-and-data-preparation)
+- [03. Feature Engineering](#03-feature-engineering)
+- [04. Exploratory Data Analysis](04-exploratory-data-analysis)
+- [05. Data Preprocessing](#05-data-preprocessing)
+- [06. Feature Selection](#06-feature-selection)
+- [07. Machine Learning Modeling](#07-machine-learning-modeling)
+- [08. Hyperparameter Tuning](#08-hyperparameter-tuning)
+- [09. Understanding the Error and Business Performance](#09-understanding-the-error-and-business-performance)
+- [10. Final Model Deployment](#10-final-model-deployment)
+- [11. The Final Solution](#11-the-final-solution)
 - [Conclusion](#conclusion)
 
 ---
