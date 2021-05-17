@@ -34,7 +34,7 @@ Esse projeto segue a mesma proposta sujerida na competição do [Kaggle](https:/
 ---
 
 ## Project Methodology
-[(next section)](#the-problem-and-the-solution) | [Table of Contents](#table-of-contents)
+[(next section)](#01-the-problem-and-the-solution) | [Table of Contents](#table-of-contents)
 
 The methodology used in this project is the **CRISP-DM** (Cross-Industry Standard Process for Data Mining), one of the most used methodologies in data science projects. In my opinion, the main advantages of using this methodology in data science projects (when compared to others SEMMA and KDD) are that any industry can use CRISP-DM on its projects and the agility in the generation of value.
 
@@ -48,7 +48,7 @@ Photo by [Kenneth Jensen](https://commons.wikimedia.org/wiki/File:CRISP-DM_Proce
 ---
 
 ## 01 - The Problem and the Solution
-[(next section)](#data-understanding-and-data-preparation) | [(previous section)](#project-methodology) | [Table of Contents](#table-of-contents)
+[(next section)](#02-data-understanding-and-data-preparation) | [(previous section)](#project-methodology) | [Table of Contents](#table-of-contents)
 
 This is the first phase of the project according to the CRISP-DM. Here there is an understanding of the problem, and consequently, it is expected that there will already be the delivery of value with a suggested solution.
 
@@ -59,59 +59,59 @@ Thus, the project's objective is to create a machine learning model that can und
 ---
 
 ## 02 - Data Understanding and Data Preparation
-[(next section)](#feature-engineering) | [(previous section)](#the-problem-and-the-solution) | [Table of Contents](#table-of-contents)
+[(next section)](#03-feature-engineering) | [(previous section)](#01-the-problem-and-the-solution) | [Table of Contents](#table-of-contents)
 
 
 
 ---
 
 ## 03 - Feature Engineering
-[(next section)](#exploratory-data-analysis) | [(previous section)](#data-understanding-and-data-preparation) | [Table of Contents](#table-of-contents)
+[(next section)](#04-exploratory-data-analysis) | [(previous section)](#02-data-understanding-and-data-preparation) | [Table of Contents](#table-of-contents)
 
 ---
 
 ## 04 - Exploratory Data Analysis
-[(next section)](#data-preprocessing) | [(previous section)](#feature-engineering) | [Table of Contents](#table-of-contents)
+[(next section)](#05-data-preprocessing) | [(previous section)](#03-feature-engineering) | [Table of Contents](#table-of-contents)
 
 ---
 
 ## 05 - Data Preprocessing
-[(next section)](#feature-selection) | [(previous section)](#exploratory-data-analysis) | [Table of Contents](#table-of-contents)
+[(next section)](#06-feature-selection) | [(previous section)](#04-exploratory-data-analysis) | [Table of Contents](#table-of-contents)
 
 ---
 
 ## 06 - Feature Selection
-[(next section)](#machine-learning-modeling) | [(previous section)](#data-preprocessing) | [Table of Contents](#table-of-contents)
+[(next section)](#07-machine-learning-modeling) | [(previous section)](#05-data-preprocessing) | [Table of Contents](#table-of-contents)
 
 ---
 
 ## 07 - Machine Learning Modeling
-[(next section)](#hyperparameter-tuning) | [(previous section)](#feature-selection) | [Table of Contents](#table-of-contents)
+[(next section)](#08-hyperparameter-tuning) | [(previous section)](#06-feature-selection) | [Table of Contents](#table-of-contents)
 
 ---
 
 ## 08 - Hyperparameter Tuning
-[(next section)](#understanding-the-error-and-business-performance) | [(previous section)](#machine-learning-modeling) | [Table of Contents](#table-of-contents)
+[(next section)](#09-understanding-the-error-and-business-performance) | [(previous section)](#07-machine-learning-modeling) | [Table of Contents](#table-of-contents)
 
 ---
 
 ## 09 - Understanding the Error and Business Performance
-[(next section)](#final-model-deployment) | [(previous section)](#hyperparameter-tuning) | [Table of Contents](#table-of-contents)
+[(next section)](#10-final-model-deployment) | [(previous section)](#08-hyperparameter-tuning) | [Table of Contents](#table-of-contents)
 
 ---
 
 ## 10 - Final Model Deployment
-[(next section)](#the-final-solution) | [(previous section)](#understanding-the-error-and-business-performance) | [Table of Contents](#table-of-contents)
+[(next section)](#11-the-final-solution) | [(previous section)](#09-understanding-the-error-and-business-performance) | [Table of Contents](#table-of-contents)
 
 ---
 
 ## 11 - The Final Solution
-[(next section)](#conclusion) | [(previous section)](#final-model-deployment) | [Table of Contents](#table-of-contents)
+[(next section)](#conclusion) | [(previous section)](#10-final-model-deployment) | [Table of Contents](#table-of-contents)
 
 --- 
 
 ## Conclusion
-[(previous section)](#the-final-solution) | [Table of Contents](#table-of-contents) | [Back to Top](#rossmann-stores-sale-prediction)
+[(previous section)](#11-the-final-solution) | [Table of Contents](#table-of-contents) | [Back to Top](#rossmann-stores-sale-prediction)
 
 
 
