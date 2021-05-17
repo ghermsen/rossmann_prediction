@@ -47,7 +47,7 @@ Photo by [Kenneth Jensen](https://commons.wikimedia.org/wiki/File:CRISP-DM_Proce
 
 ---
 
-## 01 - The Problem and the Solution
+## 01. The Problem and the Solution
 [(next section)](#02-data-understanding-and-data-preparation) | [(previous section)](#project-methodology) | [Table of Contents](#table-of-contents)
 
 This is the first phase of the project according to the CRISP-DM. Here there is an understanding of the problem, and consequently, it is expected that there will already be the delivery of value with a suggested solution.
@@ -58,54 +58,54 @@ Thus, the project's objective is to create a machine learning model that can und
 
 ---
 
-## 02 - Data Understanding and Data Preparation
+## 02. Data Understanding and Data Preparation
 [(next section)](#03-feature-engineering) | [(previous section)](#01-the-problem-and-the-solution) | [Table of Contents](#table-of-contents)
 
 
 
 ---
 
-## 03 - Feature Engineering
+## 03. Feature Engineering
 [(next section)](#04-exploratory-data-analysis) | [(previous section)](#02-data-understanding-and-data-preparation) | [Table of Contents](#table-of-contents)
 
 ---
 
-## 04 - Exploratory Data Analysis
+## 04. Exploratory Data Analysis
 [(next section)](#05-data-preprocessing) | [(previous section)](#03-feature-engineering) | [Table of Contents](#table-of-contents)
 
 ---
 
-## 05 - Data Preprocessing
+## 05. Data Preprocessing
 [(next section)](#06-feature-selection) | [(previous section)](#04-exploratory-data-analysis) | [Table of Contents](#table-of-contents)
 
 ---
 
-## 06 - Feature Selection
+## 06. Feature Selection
 [(next section)](#07-machine-learning-modeling) | [(previous section)](#05-data-preprocessing) | [Table of Contents](#table-of-contents)
 
 ---
 
-## 07 - Machine Learning Modeling
+## 07. Machine Learning Modeling
 [(next section)](#08-hyperparameter-tuning) | [(previous section)](#06-feature-selection) | [Table of Contents](#table-of-contents)
 
 ---
 
-## 08 - Hyperparameter Tuning
+## 08. Hyperparameter Tuning
 [(next section)](#09-understanding-the-error-and-business-performance) | [(previous section)](#07-machine-learning-modeling) | [Table of Contents](#table-of-contents)
 
 ---
 
-## 09 - Understanding the Error and Business Performance
+## 09. Understanding the Error and Business Performance
 [(next section)](#10-final-model-deployment) | [(previous section)](#08-hyperparameter-tuning) | [Table of Contents](#table-of-contents)
 
 ---
 
-## 10 - Final Model Deployment
+## 10. Final Model Deployment
 [(next section)](#11-the-final-solution) | [(previous section)](#09-understanding-the-error-and-business-performance) | [Table of Contents](#table-of-contents)
 
 ---
 
-## 11 - The Final Solution
+## 11. The Final Solution
 [(next section)](#conclusion) | [(previous section)](#10-final-model-deployment) | [Table of Contents](#table-of-contents)
 
 --- 
