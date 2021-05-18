@@ -16,17 +16,17 @@ Photo by [Anakin81](https://commons.wikimedia.org/wiki/File:Rossmann_Schriftzug_
 
 ## Table of Contents
 - [Project Methodology](#project-methodology)
-- [01 - The Problem and the Solution](#01-the-problem-and-the-solution)
-- [02 - Data Understanding and Data Preparation](#02-data-understanding-and-data-preparation)
-- [03 - Feature Engineering](#03-feature-engineering)
-- [04 - Exploratory Data Analysis](04-exploratory-data-analysis)
-- [05 - Data Preprocessing](#05-data-preprocessing)
-- [06 - Feature Selection](#06-feature-selection)
-- [07 - Machine Learning Modeling](#07-machine-learning-modeling)
-- [08 - Hyperparameter Tuning](#08-hyperparameter-tuning)
-- [09 - Understanding the Error and Business Performance](#09-understanding-the-error-and-business-performance)
-- [10 - Final Model Deployment](#10-final-model-deployment)
-- [11 - The Final Solution](#11-the-final-solution)
+- [01. The Problem and the Solution](#01-the-problem-and-the-solution)
+- [02. Data Understanding and Data Preparation](#02-data-understanding-and-data-preparation)
+- [03. Feature Engineering](#03-feature-engineering)
+- [04. Exploratory Data Analysis](04-exploratory-data-analysis)
+- [05. Data Preprocessing](#05-data-preprocessing)
+- [06. Feature Selection](#06-feature-selection)
+- [07. Machine Learning Modeling](#07-machine-learning-modeling)
+- [08. Hyperparameter Tuning](#08-hyperparameter-tuning)
+- [09. Understanding the Error and Business Performance](#09-understanding-the-error-and-business-performance)
+- [10. Final Model Deployment](#10-final-model-deployment)
+- [11. The Final Solution](#11-the-final-solution)
 - [Conclusion](#conclusion)
 
 ---
@@ -50,7 +50,7 @@ Below there is a diagram that shows this methodology:
 
 ---
 
-## 01 - The Problem and the Solution
+## 01. The Problem and the Solution
 [(next section)](#02-data-understanding-and-data-preparation) | [(previous section)](#project-methodology) | [Table of Contents](#table-of-contents)
 
 Here there is an understanding of the problem, and consequently, it is expected a delivery of value with a suggested solution. Analyzing the description of the competition in [Kaggle](https://www.kaggle.com/c/rossmann-store-sales), the following can be observed: * "With thousands of individual managers predicting sales based on their unique circumstances, the accuracy of results can be quite varied." *. With this mention, it seems that the problem lies in obtaining sales results with varying accuracy by these thousands of managers.
@@ -59,7 +59,7 @@ Thus, the project's objective is to create a machine learning model that can und
 
 ---
 
-## 02 - Data Understanding and Data Preparation
+## 02. Data Understanding and Data Preparation
 [(next section)](#03-feature-engineering) | [(previous section)](#01-the-problem-and-the-solution) | [Table of Contents](#table-of-contents)
 
 ### 02.01 - Obtaining the Data
@@ -160,7 +160,7 @@ df1.dtypes
 
 The quality of a dataset is directly related to the number of missing values. It is important to understand early on whether these null values are significant concerning the total number of entries to avoid future problems in our analysis. Below, it is possible to see that the following variables present missing data:
 
-* `competition_distance` = &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2,642 or **00.26%**
+* `competition_distance` = &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2,642 or **00.26%**
 * `competition_open_since_month` = 323,348 or **31.79%**
 * `competition_open_since_month` = 323,348 or **31.79%**
 * `competition_open_since_month` = 508,031 or **49.94%**
@@ -328,53 +328,50 @@ Once plotted, we can see the relationship between categorical variables and sale
 
 ---
 
-## 03 - Feature Engineering
+## 03. Feature Engineering
 [(next section)](#04-exploratory-data-analysis) | [(previous section)](#02-data-understanding-and-data-preparation) | [Table of Contents](#table-of-contents)
 
 ---
 
-## 04 - Exploratory Data Analysis
+## 04. Exploratory Data Analysis
 [(next section)](#05-data-preprocessing) | [(previous section)](#03-feature-engineering) | [Table of Contents](#table-of-contents)
 
 ---
 
-## 05 - Data Preprocessing
+## 05. Data Preprocessing
 [(next section)](#06-feature-selection) | [(previous section)](#04-exploratory-data-analysis) | [Table of Contents](#table-of-contents)
 
 ---
 
-## 06 - Feature Selection
+## 06. Feature Selection
 [(next section)](#07-machine-learning-modeling) | [(previous section)](#05-data-preprocessing) | [Table of Contents](#table-of-contents)
 
 ---
 
-## 07 - Machine Learning Modeling
+## 07. Machine Learning Modeling
 [(next section)](#08-hyperparameter-tuning) | [(previous section)](#06-feature-selection) | [Table of Contents](#table-of-contents)
 
 ---
 
-## 08 - Hyperparameter Tuning
+## 08. Hyperparameter Tuning
 [(next section)](#09-understanding-the-error-and-business-performance) | [(previous section)](#07-machine-learning-modeling) | [Table of Contents](#table-of-contents)
 
 ---
 
-## 09 - Understanding the Error and Business Performance
+## 09. Understanding the Error and Business Performance
 [(next section)](#10-final-model-deployment) | [(previous section)](#08-hyperparameter-tuning) | [Table of Contents](#table-of-contents)
 
 ---
 
-## 10 - Final Model Deployment
+## 10. Final Model Deployment
 [(next section)](#11-the-final-solution) | [(previous section)](#09-understanding-the-error-and-business-performance) | [Table of Contents](#table-of-contents)
 
 ---
 
-## 11 - The Final Solution
+## 11. The Final Solution
 [(next section)](#conclusion) | [(previous section)](#10-final-model-deployment) | [Table of Contents](#table-of-contents)
 
 --- 
 
 ## Conclusion
 [(previous section)](#11-the-final-solution) | [Table of Contents](#table-of-contents) | [Back to Top](#rossmann-stores-sale-prediction)
-
-
-
