@@ -43,8 +43,9 @@ For a better understanding, we will assume the following situation: we are in th
 Below there is a diagram that shows this methodology:
 
 <p align = "center">
-    <img alt="" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/b/b9/CRISP-DM_Process_Diagram.png">
-    <a href="https://commons.wikimedia.org/wiki/File:CRISP-DM_Process_Diagram.png">Photo by Kenneth Jensen</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
+    <center><img alt="" width="50%" src="https://upload.wikimedia.org/wikipedia/commons/b/b9/CRISP-DM_Process_Diagram.png">
+    <br><a href="https://commons.wikimedia.org/wiki/File:CRISP-DM_Process_Diagram.png">Photo by Kenneth Jensen</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, via Wikimedia Commons
+    </center>
 </p> 
 
 ---
@@ -97,8 +98,8 @@ Below, it is possible to see that our dataset has **1,017,209 rows and 18 column
 print(f'Number of rows:\t\t {df1.shape[0]}')
 print(f'Number of columns:\t {df1.shape[1]}')
 
-    Number of rows:		 1017209
-    Number of columns:	 18
+    Number of rows:    1017209
+    Number of columns:      18
     
 # type of variables
 
@@ -159,7 +160,7 @@ df1.dtypes
 
 The quality of a dataset is directly related to the number of missing values. It is important to understand early on whether these null values are significant concerning the total number of entries to avoid future problems in our analysis. Below, it is possible to see that the following variables present missing data:
 
-* `competition_distance` = &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2,642 or **00.26%**
+* `competition_distance` = &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2,642 or **00.26%**
 * `competition_open_since_month` = 323,348 or **31.79%**
 * `competition_open_since_month` = 323,348 or **31.79%**
 * `competition_open_since_month` = 508,031 or **49.94%**
@@ -319,10 +320,7 @@ One of the most practical ways to do descriptive statistics for categorical vari
 
 There is the possibility of identifying outliers with these graphs, represented by the points above or below the lines representing the maximum and minimum.
 
-Once plotted, we can see the relationship between categorical variables and sales. We can see that the median of `state_holiday`type b (Easter Holiday) and type c (Christmas) are greater than type a (Public Holiday).
-
-Uma vez plotados, a relação entre as variáveis categóricas com o as vendas pode ser visto claramente. Pode ser visto que a mediana dos `state_holiday` do tipo b (Easter Holiday) e do tipo c (Christmas) são maiores do que do tipo a (Public Holiday). `Store_type` b has the highest median followed by c and stores with` assortment` b (extra) have the highest median.
-
+Once plotted, we can see the relationship between categorical variables and sales. We can see that the median of type b (Easter Holiday) and type c (Christmas) state_holiday are greater than type a (Public Holiday). `Store_type` b has the highest median followed by c, and stores with` assortment` b (extra) have the highest median.
 
 <p align="center">
     <img src="img/02.04.02_box_plot_cat_att.png">
