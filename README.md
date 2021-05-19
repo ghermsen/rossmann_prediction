@@ -18,7 +18,7 @@ Photo by [Anakin81](https://commons.wikimedia.org/wiki/File:Rossmann_Schriftzug_
 - [Project Methodology](#project-methodology)
 - [01. The Problem and the Solution](#01-the-problem-and-the-solution)
 - [02. Data Understanding and Data Preparation](#02-data-understanding-and-data-preparation)
-- [03. Feature Engineering](#03-feature-engineering)
+- [03. Feature Engineering and Feature Filtering](#03-feature-engineering-and-feature-filtering)
 - [04. Exploratory Data Analysis](04-exploratory-data-analysis)
 - [05. Data Preprocessing](#05-data-preprocessing)
 - [06. Feature Selection](#06-feature-selection)
@@ -60,7 +60,7 @@ Thus, the project's objective is to create a machine learning model that can und
 ---
 
 ## 02. Data Understanding and Data Preparation
-[(next section)](#03-feature-engineering) | [(previous section)](#01-the-problem-and-the-solution) | [Table of Contents](#table-of-contents)
+[(next section)](#03-feature-engineering-and-feature-filtering) | [(previous section)](#01-the-problem-and-the-solution) | [Table of Contents](#table-of-contents)
 
 ### 02.01 - Obtaining the Data
 
@@ -320,7 +320,7 @@ One of the most practical ways to do descriptive statistics for categorical vari
 
 There is the possibility of identifying outliers with these graphs, represented by the points above or below the lines representing the maximum and minimum.
 
-Once plotted, we can see the relationship between categorical variables and sales. We can see that the median of type b (Easter Holiday) and type c (Christmas) state_holiday are greater than type a (Public Holiday). `Store_type` b has the highest median followed by c, and stores with` assortment` b (extra) have the highest median.
+Once plotted, we can see the relationship between categorical variables and sales. We can see that the median of the `state_holiday` type b (Easter Holiday) and type c (Christmas) are greater than type a (Public Holiday). The `store_type` b has the highest median followed by c, and stores with `assortment` b (extra) have the highest median.
 
 <p align="center">
     <img src="img/02.04.02_box_plot_cat_att.png">
@@ -328,7 +328,7 @@ Once plotted, we can see the relationship between categorical variables and sale
 
 ---
 
-## 03. Feature Engineering
+## 03. Feature Engineering and Feature Filtering
 [(next section)](#04-exploratory-data-analysis) | [(previous section)](#02-data-understanding-and-data-preparation) | [Table of Contents](#table-of-contents)
 
 In this stage of the project, variables will be created from existing variables. For this, a hypothesis map was generated to assist which variables must be created in order to accept the hypotheses.
@@ -415,10 +415,40 @@ df2['assortment'] = df2['assortment'].apply(lambda x: 'basic' if x == 'a' else '
 df2['state_holiday'] = df2['state_holiday'].apply(lambda x: 'public_holiday' if x == 'a' else 'easter_holiday' if x == 'b' else 'christmas' if x == 'c' else 'regular_day')
 ```
 
+### 03.03 - Feature Filtering
+
+After the feature engineering, it is necessary to filter the dataset before starting the Exploratory Data Analysis and creating the model.
+
+This project has the objective to predict the total sales in the next six weeks. If we have a close looking in the dataset, there are days that the stores are closed, and consequently, the sales are equal to zero. This information is not relevant to the model because of this is conducted filtering on these rows.
+
+```python 
+df3 = df3[(df3['open'] != 0) & (df3['sales'] > 0)]
+```
+
+After this process, it is possible to see some variables that will not be available during the prediction, as `clients`. This variable shows the number of clients in the store on that day. For this, it would be necessary another model predict the number of clients and send the output to the prediction model. Because of this, this variable is deleted from the dataset. I will also drop other variables as `open` (already filtered) and `promo_interval`, and `month_map` (used to generate other variables) from the dataset. 
+
+Below, the code made for this process and the variables selected to continue the project.
+
+```python 
+cols_drop = ['customers', 'open', 'promo_interval', 'month_map']
+
+df3 = df3.drop(cols_drop, axis = 1)
+
+df3.columns
+
+    Index(['store', 'day_of_week', 'date', 'sales', 'promo', 'state_holiday',
+           'school_holiday', 'store_type', 'assortment', 'competition_distance',
+           'competition_open_since_month', 'competition_open_since_year', 'promo2',
+           'promo2_since_week', 'promo2_since_year', 'is_promo', 'year', 'month',
+           'day', 'week_of_year', 'year_week', 'competition_since',
+           'competition_time_month', 'promo_since', 'promo_time_week'],
+          dtype='object')
+```
+
 ---
 
 ## 04. Exploratory Data Analysis
-[(next section)](#05-data-preprocessing) | [(previous section)](#03-feature-engineering) | [Table of Contents](#table-of-contents)
+[(next section)](#05-data-preprocessing) | [(previous section)](#03-feature-engineering-and-feature-filtering) | [Table of Contents](#table-of-contents)
 
 
 
