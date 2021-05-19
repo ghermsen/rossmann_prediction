@@ -331,6 +331,90 @@ Once plotted, we can see the relationship between categorical variables and sale
 ## 03 - Feature Engineering
 [(next section)](#04-exploratory-data-analysis) | [(previous section)](#02-data-understanding-and-data-preparation) | [Table of Contents](#table-of-contents)
 
+In this stage of the project, variables will be created from existing variables. For this, a hypothesis map was generated to assist which variables must be created in order to accept the hypotheses.
+
+### 03.01 - Hypothesis Map and Hyphothesis Creation
+
+The Hypothesis Map was developed following five main factors that could influence the daily sales: **customers characteristics, products characteristics, location characteristics, stores characteristics, and time characteristics**.
+
+<p align="center">
+    <img src="img/mental_map.png">
+</p>
+
+Based on these characteristics and the data available on the dataset, the following list of hypotheses were developed:
+
+1. Stores with a larger assortment should sell more.
+2. Stores with closer competitors should sell less.
+3. Stores with longer competitors should sell more.
+4. Stores with active promotions for longer should sell more.
+5. Stores with more days of promotion should sell more.
+6. Stores with more consecutive promotions should sell more.
+7. Stores open during the Christmas holiday should sell more.
+8. Stores should sell more over the years.
+9. Stores should sell more in the second half of the year.
+10. Stores should sell more after the 10th of each month.
+11. Stores should sell less on weekends.
+12. Stores should sell less during school holidays.
+
+### 03.02 - Feature Engineering
+
+According with the final hypothesis list, the following variables were created or modified:
+
+| Variable | Description |
+| ----- | ----- |
+| `year` | year of the observation |
+| `month` | month of the observation |
+| `day` | day of the observation |
+| `week_of_year` | week of the year of the observation |
+| `year_week` | year and week of the observation |
+| `competition_since` | variable to assist the creation of `competition_time_month` |
+| `competition_time_month` | period in months that there is competitor close to the store |
+| `promo_since` | variable to assist the creation of `promo_time_week` |
+| `promo_time_week` | period in weeks that the store joined a promotion |
+| `assortment` | modification of the variable with the correct assortment |
+| `state_holiday` | modification of the variable with the correct holiday name |
+
+```python 
+# year
+
+df2['year'] = df2['date'].dt.year
+
+# month
+
+df2['month'] = df2['date'].dt.month
+
+# day
+
+df2['day'] = df2['date'].dt.day
+
+# week_of_year
+
+df2['week_of_year'] = df2['date'].dt.weekofyear
+
+# year_week
+
+df2['year_week'] = df2['date'].dt.strftime('%Y-%W')
+
+# competition_since
+
+df2['competition_since'] = df2.apply(lambda x: datetime.datetime(year = x['competition_open_since_year'], month = x['competition_open_since_month'], day = 1), axis = 1)
+df2['competition_time_month'] = ((df2['date'] - df2['competition_since']) / 30).apply(lambda x: x.days).astype(int)
+
+# promo_since
+
+df2['promo_since'] = df2['promo2_since_year'].astype(str) + '-' + df2['promo2_since_week'].astype(str)
+df2['promo_since'] = df2['promo_since'].apply(lambda x: datetime.datetime.strptime(x + '-1', '%Y-%W-%w') - datetime.timedelta(days = 7))
+df2['promo_time_week'] = ((df2['date'] - df2['promo_since']) / 7).apply(lambda x: x.days).astype(int)
+
+# assortment
+
+df2['assortment'] = df2['assortment'].apply(lambda x: 'basic' if x == 'a' else 'extra' if x == 'b' else 'extended')
+
+# state_holiday
+
+df2['state_holiday'] = df2['state_holiday'].apply(lambda x: 'public_holiday' if x == 'a' else 'easter_holiday' if x == 'b' else 'christmas' if x == 'c' else 'regular_day')
+```
+
 ---
 
 ## 04 - Exploratory Data Analysis
