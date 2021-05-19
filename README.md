@@ -367,9 +367,9 @@ According with the final hypothesis list, the following variables were created o
 | `day` | day of the observation |
 | `week_of_year` | week of the year of the observation |
 | `year_week` | year and week of the observation |
-| `competition_since` | variable to assist the creation of `competition_time_month` |
-| `competition_time_month` | period in months that there is competitor close to the store |
-| `promo_since` | variable to assist the creation of `promo_time_week` |
+| `competition_since` | date that started a competition close to the store |
+| `competition_time_month` | period in months that there is this competition close to the store |
+| `promo_since` | date that the store joined a promotion  |
 | `promo_time_week` | period in weeks that the store joined a promotion |
 | `assortment` | modification of the variable with the correct assortment |
 | `state_holiday` | modification of the variable with the correct holiday name |
@@ -419,6 +419,8 @@ df2['state_holiday'] = df2['state_holiday'].apply(lambda x: 'public_holiday' if 
 
 ## 04 - Exploratory Data Analysis
 [(next section)](#05-data-preprocessing) | [(previous section)](#03-feature-engineering) | [Table of Contents](#table-of-contents)
+
+
 
 ---
 
