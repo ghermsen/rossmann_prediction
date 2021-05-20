@@ -343,18 +343,18 @@ The Hypothesis Map was developed following five main factors that could influenc
 
 Based on these characteristics and the data available on the dataset, the following list of hypotheses were developed:
 
-1. Stores with a larger assortment should sell more.
-2. Stores with closer competitors should sell less.
-3. Stores with longer competitors should sell more.
-4. Stores with active promotions for longer should sell more.
-5. Stores with more days of promotion should sell more.
-6. Stores with more consecutive promotions should sell more.
-7. Stores open during the Christmas holiday should sell more.
-8. Stores should sell more over the years.
-9. Stores should sell more in the second half of the year.
-10. Stores should sell more after the 10th of each month.
-11. Stores should sell less on weekends.
-12. Stores should sell less during school holidays.
+- 1. Stores with a larger assortment should sell more.
+- 2. Stores with closer competitors should sell less.
+- 3. Stores with longer competitors should sell more.
+- 4. Stores with active promotions for longer should sell more.
+- 5. Stores with more days of promotion should sell more.
+- 6. Stores with more consecutive promotions should sell more.
+- 7. Stores open during the Christmas holiday should sell more.
+- 8. Stores should sell more over the years.
+- 9. Stores should sell more in the second half of the year.
+- 10. Stores should sell more after the 10th of each month.
+- 11. Stores should sell less on weekends.
+- 12. Stores should sell less during school holidays.
 
 ### 03.02 - Feature Engineering
 
@@ -450,7 +450,240 @@ df3.columns
 ## 04. Exploratory Data Analysis
 [(next section)](#05-data-preprocessing) | [(previous section)](#03-feature-engineering-and-feature-filtering) | [Table of Contents](#table-of-contents)
 
+This step of the project aims to determine how the predictor variables impact the target variable (`sales`) and how much this impact is. In this step, it is conducted a hypotheses validation and how relevant these hypotheses are.
 
+This step is divided into three main parts:
+
+* **Univariate Analysis** - an overview of the target variable and the numerical and categorical variables.
+
+* **Bivariate Analysis** - performed to validate or refuse the hypotheses.
+
+* **Multivariate Analysis** - performed to check the correlations between the variables. This analysis is performed in different ways. It depends if the variables are numerical or categorical.
+
+### 04.01 - Univariate Analysis
+
+#### 04.01.01 - Target Variable
+
+It was possible to see in the descriptive statistics that our target variable (`sales`) has an average of **5,773.82 €** and a median of **5,744.00 €**. It is also possible to see that the sales distribution is not in the center. This variable presents a bell curve, but it is not a normal distribution because it has a moderately skewed distribution (**0.641460**), and its kurtosis is not close to 0 (**1.778375**).
+
+As most machine learning models require that the data follow a normal distribution, it will be necessary to make the target variable go through some transformations to approach a normal distribution.
+
+<p align="center">
+    <img src="img/04.01.01_target_variable.png">
+</p>
+
+#### 04.01.02 - Numerical Variables
+
+<p align="center">
+    <img src="img/04.01.02_numerical_variables.png">
+</p>
+
+| Variable | Note |
+| ----- | ----- |
+|`store` | this represents the store's ID, no relevant information to the analysis |
+|`day_of_week` | the data is uniform; it shows that this variable alone can not explain the target variable |
+|`open` | this variable was filtered to show only data on opened days |
+|`promo` | the majority of the observations shows that the stores did not join promotions |
+|`school_holiday` | regular days are the majority of the observations |
+|`competition_distance` | there are more observations with stores that have close competitors |
+|`competition_open_since_month` | September is the month that more competitors are opened, followed by April |
+|`competition_open_since_year` | the majority of the competitors are opened between 2010 and 2015  |
+|`promo2` | the number of observations of stores that joined consecutive promotion is practically equal to the stores that did not |
+|`promo2_since_week` | the majority of stores joined consecutive promotion period during the 13th and 14th weeks of the year |
+|`promo2_since_year` | the majority of stores joined the consecutive promotion in 2013, and the number of stores that join this promotion is in a downtrend |
+|`is_promo` | the majority of the observations show that stores did not join the promotion period |
+
+#### 04.01.03 - Categorical Variables
+
+<p align="center">
+    <img src="img/04.01.03_categorical_variables.png">
+</p>
+
+When the categorical variables are analyzed, it is possible to see that:
+
+* there is a high spike in sales on Christmas holidays
+* type d stores do not have the highest sales but have the highest sales peaks
+* the sales volume of stores with extra assortment is more evenly distributed.
+
+### 04.02 - Bivariate Analysis
+
+In this part of the project, the hypotheses generated in the previous session will be validated or refused.
+
+#### Hypothesis 1 - Stores with a larger assortment should sell more.
+
+In Kaggle's competition, there is no information on what the name of the assortment means. In this project, the assortment type *basic* is interpreted as the small type of assortment that a store has, while the type *extra* is large.
+
+The chart below shows that stores with *extra* assortment type have the lowest volume of sales.
+
+**Hypothesis 1 is refused**
+
+<p align="center">
+    <img src="img/04.02_h1.png">
+</p>
+
+
+#### Hypothesis 2 - Stores with closer competitors should sell less.
+
+Below it is possible to see that stores with closer competitors present higher sales. When Pearson's correlation is analyzed, it is seen that there is a week negative correlation (**-0.23**). This shows that the more distant the competitor is, the lower the sales.
+
+**Hypothesis 2 is refused**
+
+<p align="center">
+    <img src="img/04.02_h2.png">
+</p>
+
+#### Hypothesis 3 - Stores with longer competitors should sell more.
+
+The charts below show that the volume of sell increases in periods before the competitions start. After that, when competition begins, the volume of sales decreases, which makes this hypothesis false. It also can be seen in the regression chart. The Person's correlation shows a very weak negative correlation (**-0.1**), and it also confirms that the longer the competition exists, the lower the volume of sales.
+
+**Hypothesis 3 is refused**
+
+<p align="center">
+    <img src="img/04.02_h3.png">
+</p>
+
+#### Hypothesis 4 - Stores with active promotions for longer should sell more.
+
+Below, the first bar chart shows periods of extended promo. This chart shows that the longer the promotion period, the lower the volume of sales. The Pearson's correlation shows a very week negative correlation (**-0.029**).
+
+**Hypothesis 4 is refused**
+
+<p align="center">
+    <img src="img/04.02_h4.png">
+</p>
+
+#### Hypothesis 5 - Stores with more days of promotion should sell more.
+
+Future analysis.
+
+#### Hypothesis 6 - Stores with more consecutive promotions should sell more.
+
+A data frame was created to validate this hypothesis. It is possible to see that on this data frame is possible to see that stores with more consecutive promotions (`promo` and `promo2`) sell less than stores without any promotion period or stores that only joined the regular promotion period. Because of this, this hypothesis is false.
+
+**Hypothesis 6 is refused**
+
+```python 
+df4[['promo', 'promo2', 'sales']].groupby(['promo', 'promo2']).sum().reset_index()
+```
+
+<p align="center">
+    <img src="img/04.02_h6.png">
+</p>
+
+#### Hypothesis 7 - Stores open during the Christmas holiday should sell more.
+
+Below it is possible to see that stores sell less during the Christmas Holidays.
+
+**Hypothesis 7 is refused**
+
+<p align="center">
+    <img src="img/04.02_h7.png">
+</p>
+
+#### Hypothesis 8 - Stores should sell more over the years.
+
+Below it is possible to see that the stores are selling less over the years. The Person's correlation shows a strong negative correlation (**-0.92**) between these variables.
+
+**Hypothesis 8 is refused**
+
+<p align="center">
+    <img src="img/04.02_h8.png">
+</p>
+
+#### Hypothesis 9 - Stores should sell more in the second half of the year.
+
+Below it is possible to see that the stores sell less in the second semester of the years. The Person's correlation shows a strong negative correlation (**-0.75**) between these variables.
+
+**Hypothesis 9 is refused**
+
+<p align="center">
+    <img src="img/04.02_h9.png">
+</p>
+
+#### Hypothesis 10 - Stores should sell more after the 15th day of each month.
+
+Below it is possible to see that the stores sell more after the 15th day of the month. The Person's correlation shows a week negative correlation (**-0.35**) between these variables.
+
+**Hypothesis 10 is validated**
+
+<p align="center">
+    <img src="img/04.02_h10.png">
+</p>
+
+#### Hypothesis 11 - Stores should sell less on weekends.
+
+Below it is possible to see that the stores sell less during the weekends. The Person's correlation shows a strong negative correlation (**-0.76**) between these variables.
+
+**Hypothesis 11 is validated**
+
+<p align="center">
+    <img src="img/04.02_h11.png">
+</p>
+
+#### Hypothesis 12 - Stores should sell less during school holidays.
+
+In Germany, school holidays have different dates according to the federal State. But usually, the period of school holidays is from middle July until the final of August. Based on this information, the chart below shows that the stores sell more during the school holidays.
+
+**Hypothesis 12 is validated**
+
+<p align="center">
+    <img src="img/04.02_h12.png">
+</p>
+
+#### Hypotheses Summary
+
+Below there is a final summary with the conclusion and its relevance to the machine learning model.
+
+|**Hypothesis Number**|**Validated / Refused**|**Relevance**|
+| ----- | ----- | ----- |
+| Hypothesis 1 | Refused | Low |
+| Hypothesis 2 | Refused | Medium |
+| Hypothesis 3 | Refused | Medium |
+| Hypothesis 4 | Refused | Low |
+| Hypothesis 5 | - | - |
+| Hypothesis 6 | Refused | Low |
+| Hypothesis 7 | Refused | Medium |
+| Hypothesis 8 | Refused | High |
+| Hypothesis 9 | Refused | High |
+| Hypothesis 10 | Validated | High |
+| Hypothesis 11 | Validated | High |
+| Hypothesis 12 | Validated | Low |
+
+### 04.03 - Multivariate Analysis
+
+After the validation of the hypotheses, it is time to check the correlations between the independent variables. First, the numerical attributes using the method of ***Pearson*** and then the categorical attributes using the ***Cramer V***.
+
+#### 04.03.01 - Correlation of Numerical Attibutes
+
+<p align="center">
+    <img src="img/04.03_num_att_corr.png">
+</p>
+
+| **Variable A** | **Variable B** | **Correlation**|
+| ----- | ----- | ----- |
+|`day_of_week` | `school_holiday` | Weakly Negative Correlation|
+|`day_of_week` | `promo` | Weakly Negative Correlation|
+|`day_of_week` | `open` | Moderately Negative Correlation|
+|`day_of_week` | `customers` | Weakly Negative Correlation|
+|`sales` | `promo` | Weakly Positive Correlation|
+|`sales` | `open` | Moderately Positive Correlation|
+|`sales` | `customers` | Strongly Positive Correlation|
+|`customers` | `promo` | Weakly Positive Correlation|
+|`customers` | `open` | Moderately Positive Correlation|
+|`open` | `promo` | Weakly Positive Correlation|
+|`promo2` | `is_promo` | Weakly Positive Correlation|
+|`promo2` | `promo2_since_year` | Moderately Negative Correlation|
+|`promo2_since_year` | `is_promo` | Weakly Negative Correlation|
+
+#### 04.03.02 - Correlation of Categorical Attibutes
+
+<p align="center">
+    <img src="img/04.03_cat_att_corr.png">
+</p>
+
+| **Variable A** | **Variable B** | **Correlation**|
+| ----- | ----- | ----- |
+|`store_type` | `assortment` | Moderately Positive Correlation|
 
 ---
 
