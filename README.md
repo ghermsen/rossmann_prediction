@@ -19,7 +19,7 @@ Photo by [Anakin81](https://commons.wikimedia.org/wiki/File:Rossmann_Schriftzug_
 - [01. The Problem and the Solution](#01-the-problem-and-the-solution)
 - [02. Data Understanding and Data Preparation](#02-data-understanding-and-data-preparation)
 - [03. Feature Engineering and Feature Filtering](#03-feature-engineering-and-feature-filtering)
-- [04. Exploratory Data Analysis](04-exploratory-data-analysis)
+- [04. Exploratory Data Analysis](#04-exploratory-data-analysis)
 - [05. Data Preprocessing](#05-data-preprocessing)
 - [06. Feature Selection](#06-feature-selection)
 - [07. Machine Learning Modeling](#07-machine-learning-modeling)
@@ -343,18 +343,18 @@ The Hypothesis Map was developed following five main factors that could influenc
 
 Based on these characteristics and the data available on the dataset, the following list of hypotheses were developed:
 
-- 1. Stores with a larger assortment should sell more.
-- 2. Stores with closer competitors should sell less.
-- 3. Stores with longer competitors should sell more.
-- 4. Stores with active promotions for longer should sell more.
-- 5. Stores with more days of promotion should sell more.
-- 6. Stores with more consecutive promotions should sell more.
-- 7. Stores open during the Christmas holiday should sell more.
-- 8. Stores should sell more over the years.
-- 9. Stores should sell more in the second half of the year.
-- 10. Stores should sell more after the 10th of each month.
-- 11. Stores should sell less on weekends.
-- 12. Stores should sell less during school holidays.
+- 1- Stores with a larger assortment should sell more.
+- 2- Stores with closer competitors should sell less.
+- 3- Stores with longer competitors should sell more.
+- 4- Stores with active promotions for longer should sell more.
+- 5- Stores with more days of promotion should sell more.
+- 6- Stores with more consecutive promotions should sell more.
+- 7- Stores open during the Christmas holiday should sell more.
+- 8- Stores should sell more over the years.
+- 9- Stores should sell more in the second half of the year.
+- 10- Stores should sell more after the 10th of each month.
+- 11- Stores should sell less on weekends.
+- 12- Stores should sell less during school holidays.
 
 ### 03.02 - Feature Engineering
 
@@ -689,6 +689,72 @@ After the validation of the hypotheses, it is time to check the correlations bet
 
 ## 05. Data Preprocessing
 [(next section)](#06-feature-selection) | [(previous section)](#04-exploratory-data-analysis) | [Table of Contents](#table-of-contents)
+
+In this part of the project, the data preparation for the machine learning models begins.
+
+Usually, three different methods are applied to the data:
+
+* **Normalization**: used in data that has a normal distribution.
+
+* **Rescaling**: Usually, this method is applied to variables that do not have a normal distribution. The two main rescaling techniques are:
+
+    * **Min-Max Scaler**: applied using the maximum and minimum values of the data and scales the data in a interval from 0 to 1.
+    
+    * **Robust Scaler**: applied using the interquartile range of the data.
+
+* **Transformation**: data are prepared using methods of encoding, magnitude, or nature.
+
+### 05.01 - Normalization
+
+When the numerical data distributions were analyzed, it was possible to see that the variables do not follow a normal distribution. For this reason, I will not apply this type of transformation to this project.
+
+### 05.02 - Rescaling
+
+Here both methods (**Min-Max Scaler and Robust Scaler**) were applied. The **Min-Max Scaler** was applied in the variables `year` and `promo_time_week`, and it is possible to see that the values now are distributed in an interval from 0 to 1. The **Robust Scaler** was applied in the variables `competition_distance` and `promo_time_week`, and it is possible that the values now are distributed based on the values from the interquartile range of the variables.
+
+<p align="center">
+    <img src="img/05.02_boxplot_rescaling.png">
+</p>
+
+### 05.03 - Transformation
+
+In this session, the methods of **encoding, magnitude, and nature** were used to transform the variables. The encoding methods were used to transform the categorical variables, the magnitude method to transform the target variable, and the nature method to transform the cyclic variables.
+
+#### 05.03.01 - Encoding
+
+* **One Hot Encoding**, variable `state_holiday`
+
+Before Encoding           |  After Encoding
+:-------------------------:|:-------------------------:
+![](img/05.03.01_state_holiday_original.png) | ![](img/05.03.01_state_holiday_encoded.png)
+
+* **Label Encoding**, variable `store_type`
+
+Before Encoding           |  After Encoding
+:-------------------------:|:-------------------------:
+![](img/05.03.01_store_type_original.png) | ![](img/05.03.01_store_type_encoded.png) 
+
+* **Ordinal Encoding**, variable `assortment`
+
+Before Encoding           |  After Encoding
+:-------------------------:|:-------------------------:
+![](img/05.03.01_assortment_original.png) | ![](img/05.03.01_assortment_encoded.png) 
+
+#### 05.03.02 - Magnitude
+
+Application of logarithm transformation on the target variable, `sales`
+
+<p align="center">
+    <img src="img/05.03.02_target_variable_magnitude_transformation.png">
+</p>
+
+#### 05.03.03 - Nature
+
+In the variables that present cyclic periods as `day`, `month`, `week_of_year` and `day_of_week`, the nature transformation was performed. Below the result:
+
+Before Nature Transformation | After Nature Transformation
+:-------------------------:|:-------------------------:
+![](img/05.03.03_cyclic_variables_original.png) | ![](img/05.03.03_cyclic_variables_after.png) 
 
 ---
 
