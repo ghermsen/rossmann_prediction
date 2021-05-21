@@ -781,7 +781,7 @@ rf = RandomForestRegressor(n_jobs = -1)
 boruta = BorutaPy(rf, n_estimators = 'auto', verbose = 2, random_state = 42).fit(X_train_n, y_train_n)
 ```
 
-It is possible that the Boruta did its selection of variables, but the *Boruta* did not select two variables as relevant: `month_sin` and `week_of_year_sin`. As the variables `month_cos` and `week_of_year_cos` were selected by the algorithm, I will include these 2 variables not selected by the *Boruta* as relevant.
+It is possible that the Boruta made its selection of variables, but the *Boruta* did not select two variables as relevant: `month_sin` and `week_of_year_sin`. As the variables `month_cos` and `week_of_year_cos` were selected by the algorithm, I will include these two variables not selected by the *Boruta* as relevant.
 
 ```python 
 cols_selected_boruta
@@ -806,9 +806,9 @@ cols_selected_boruta
      'week_of_year_cos']
 ```
 
-Before run the algorithm, two variables was excluded: `date` and `sales`. These two variables need to be used for the machine learning model, so these two variables will be also return to the list of relevant variables.
+Before running the algorithm, two variables were excluded: `date` and `sales`. These two variables need to be used for the machine learning model, so these two variables will also be returning to the list of relevant variables.
 
-Therefore, these four variables are added manually to the final list of variables, and the list of variables selected is the folowwing:
+Therefore, these four variables are added manually to the final list of variables, and the list of variables selected is the following:
 
 ```python 
 cols_selected_boruta = ['store',
@@ -837,6 +837,22 @@ features_to_add = ['week_of_year_sin', 'month_sin', 'date', 'sales']
 
 ## 07. Machine Learning Modeling
 [(next section)](#08-hyperparameter-tuning) | [(previous section)](#06-feature-selection) | [Table of Contents](#table-of-contents)
+
+In this session, seven models will be applied in the dataset of train: **Average Model, Linear Regression, Lasso Regression, Random Forest Regression, and XGBoost Regression**. The **Average Model** will be a baseline. With this model, it will be possible to compare the performance of the other models and check if they are performing better than the simple average.
+
+To avoid overfitting and check how much the model generalizes, a Cross-Validation technique will be applied. A comparison between the results will be made at the final of this session, and a final model chose for the hyperparameter tuning and deployment.
+
+### 07.01 - Models Single Performance
+
+![](img/07.01_models_single_performance.png)
+
+### 07.02 - Models with Cross-Validation Performance
+
+![](img/07.03_models_crossvalidation_performance.png)
+
+### 07.03 - Chosen Model
+
+After the Cross-Validation, it is possible to see that the **Random Forest Regressor** presented the lowest *RMSE* value (**1255.11 +/- 317.67**). However, in this project the **XGBoost** will be chosen to continue with the hyperparameter tuning and deployment.
 
 ---
 
