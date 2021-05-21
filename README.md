@@ -690,7 +690,7 @@ After the validation of the hypotheses, it is time to check the correlations bet
 ## 05. Data Preprocessing
 [(next section)](#06-feature-selection) | [(previous section)](#04-exploratory-data-analysis) | [Table of Contents](#table-of-contents)
 
-In this part of the project, the data preparation for the machine learning models begins.
+In this session of the project, the data preparation for the machine learning models begins.
 
 Usually, three different methods are applied to the data:
 
@@ -760,6 +760,78 @@ Before Nature Transformation | After Nature Transformation
 
 ## 06. Feature Selection
 [(next section)](#07-machine-learning-modeling) | [(previous section)](#05-data-preprocessing) | [Table of Contents](#table-of-contents)
+
+In this session of the project, a **Wrapper Method** of feature selection was applied. A **Wrapper Method** is a method that uses an algorithm to select the best features on the dataset. The algorithm used in this project is the *Boruta*.
+
+Below is the code to run the *Boruta* through the train and test datasets:
+
+```python 
+# training and test dataset for boruta
+
+X_train_n = X_train.drop(['date', 'sales'], axis = 1).values
+
+y_train_n = y_train.values.ravel()
+
+# define random forest regressor
+
+rf = RandomForestRegressor(n_jobs = -1)
+
+# define boruta
+
+boruta = BorutaPy(rf, n_estimators = 'auto', verbose = 2, random_state = 42).fit(X_train_n, y_train_n)
+```
+
+It is possible that the Boruta did its selection of variables, but the *Boruta* did not select two variables as relevant: `month_sin` and `week_of_year_sin`. As the variables `month_cos` and `week_of_year_cos` were selected by the algorithm, I will include these 2 variables not selected by the *Boruta* as relevant.
+
+```python 
+cols_selected_boruta
+
+    ['store',
+     'promo',
+     'store_type',
+     'assortment',
+     'competition_distance',
+     'competition_open_since_month',
+     'competition_open_since_year',
+     'promo2',
+     'promo2_since_week',
+     'promo2_since_year',
+     'competition_time_month',
+     'promo_time_week',
+     'day_of_week_sin',
+     'day_of_week_cos',
+     'month_cos',
+     'day_sin',
+     'day_cos',
+     'week_of_year_cos']
+```
+
+Before run the algorithm, two variables was excluded: `date` and `sales`. These two variables need to be used for the machine learning model, so these two variables will be also return to the list of relevant variables.
+
+Therefore, these four variables are added manually to the final list of variables, and the list of variables selected is the folowwing:
+
+```python 
+cols_selected_boruta = ['store',
+                        'promo',
+                        'store_type',
+                        'assortment',
+                        'competition_distance',
+                        'competition_open_since_month',
+                        'competition_open_since_year',
+                        'promo2',
+                        'promo2_since_week',
+                        'promo2_since_year',
+                        'competition_time_month',
+                        'promo_time_week',
+                        'month_cos',
+                        'day_of_week_sin',
+                        'day_of_week_cos',
+                        'day_sin',
+                        'day_cos',
+                        'week_of_year_cos']
+                        
+features_to_add = ['week_of_year_sin', 'month_sin', 'date', 'sales']
+```
 
 ---
 
