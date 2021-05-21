@@ -859,6 +859,76 @@ After the Cross-Validation, it is possible to see that the **Random Forest Regre
 ## 08. Hyperparameter Tuning
 [(next section)](#09-understanding-the-error-and-business-performance) | [(previous section)](#07-machine-learning-modeling) | [Table of Contents](#table-of-contents)
 
+In this session, the model will pass through a process of Hyperparameter Tuning. This process seeks to find the best parameters for the model. The main methods to search for the best model parameters are **Random Search, Grid Search, and Bayesian Search**. In this project will be applied Random Search.
+
+The following code was used to find the hyperparameters, and below there are their results:
+
+```python 
+# parameters dictionary
+
+parameters = {'n_estimators': [1500, 1700, 2500, 3000, 3500],
+              'eta': [0.01, 0.03],
+              'max_depth': [3, 5, 9],
+              'subsample': [0.1, 0.5, 0.7],
+              'colsample_bytree': [0.3, 0.7, 0.9],
+              'min_child_weight': [3, 8, 15]
+             }
+
+MAX_EVAL = 10
+
+final_result = pd.DataFrame()
+
+# loop for random search
+
+for i in range(MAX_EVAL):
+    
+    # choose values for parameters randomly
+    
+    hp = {k: random.sample(v, 1)[0] for k, v in parameters.items()}
+    print(hp)
+
+    # model
+    
+    model_xgb = xgb.XGBRegressor(objective = 'reg:squarederror',
+                                 n_estimators = hp['n_estimators'],
+                                 eta = hp['eta'],
+                                 max_depth = hp['max_depth'],
+                                 subsample = hp['subsample'],
+                                 colsample_bytree = hp['colsample_bytree'], 
+                                 min_child_weight = hp['min_child_weight'])
+       
+    # performance
+    
+    result = cross_validation('XGBoost', model_xgb, x_training, 2, verbose = False)
+    final_result = pd.concat([final_result, result])
+    
+final_result
+
+{'n_estimators': 2500, 'eta': 0.01, 'max_depth': 9, 'subsample': 0.7, 'colsample_bytree': 0.3, 'min_child_weight': 3}
+{'n_estimators': 3000, 'eta': 0.03, 'max_depth': 9, 'subsample': 0.1, 'colsample_bytree': 0.3, 'min_child_weight': 15}
+{'n_estimators': 1500, 'eta': 0.03, 'max_depth': 3, 'subsample': 0.1, 'colsample_bytree': 0.9, 'min_child_weight': 3}
+{'n_estimators': 3500, 'eta': 0.03, 'max_depth': 9, 'subsample': 0.7, 'colsample_bytree': 0.3, 'min_child_weight': 8}
+{'n_estimators': 1500, 'eta': 0.01, 'max_depth': 5, 'subsample': 0.7, 'colsample_bytree': 0.7, 'min_child_weight': 15}
+{'n_estimators': 2500, 'eta': 0.03, 'max_depth': 5, 'subsample': 0.5, 'colsample_bytree': 0.7, 'min_child_weight': 3}
+{'n_estimators': 1700, 'eta': 0.03, 'max_depth': 5, 'subsample': 0.5, 'colsample_bytree': 0.3, 'min_child_weight': 15}
+{'n_estimators': 1500, 'eta': 0.03, 'max_depth': 5, 'subsample': 0.5, 'colsample_bytree': 0.9, 'min_child_weight': 3}
+{'n_estimators': 1500, 'eta': 0.03, 'max_depth': 9, 'subsample': 0.7, 'colsample_bytree': 0.7, 'min_child_weight': 15}
+{'n_estimators': 1700, 'eta': 0.03, 'max_depth': 9, 'subsample': 0.7, 'colsample_bytree': 0.7, 'min_child_weight': 3}
+```
+
+![](img/08_hyperparameter_tuning.png)
+
+After that the best parameters was found (in this project `n_estimators` = 1700, `eta` = 0.03, `max_depth` = 9, `subsample` = 0.7, `colsample_bytree` = 0.7 and `min_child_weight` = 3) the model was trained and tested again giving the following result:
+
+![](img/08_final_model_result.png)
+
+Below there is a comparison between the models before and after the hyperparameter tuning:
+
+||MAE|MAPE|RMSE|
+|-----|-----|-----|-----|
+|Before Hyperparameter Tuning|1046.29 |0.14|1511.67|
+|**After Hyperparameter Tuning**|**649.73**|**0.09**|**954.09**|
+
 ---
 
 ## 09. Understanding the Error and Business Performance
