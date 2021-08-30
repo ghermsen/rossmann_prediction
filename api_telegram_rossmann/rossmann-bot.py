@@ -1,33 +1,18 @@
-import pandas as pd
 import json
-import requests
+import matplotlib.pyplot as plt
 import os
+import pandas as pd
+import requests
+import seaborn as sns
+import telegram
 
+from io import BytesIO
 from flask import Flask, request, Response
 
 # constants
 
-TOKEN = '1643763356:AAHDHaS1qGa34XkcOgYWta5cpUY-kzSK7y4'
-
-# info about bot
-#
-#https://api.telegram.org/bot1643763356:AAHDHaS1qGa34XkcOgYWta5cpUY-kzSK7y4/getMe
-#
-# get updates
-#
-#https://api.telegram.org/bot1643763356:AAHDHaS1qGa34XkcOgYWta5cpUY-kzSK7y4/getUpdates
-#
-# webhook
-#
-#https://api.telegram.org/bot1643763356:AAHDHaS1qGa34XkcOgYWta5cpUY-kzSK7y4/setWebhook?url=https://98b06c9ed3c1fa.localhost.run
-#
-# webhook heroku
-#
-#https://api.telegram.org/bot1643763356:AAHDHaS1qGa34XkcOgYWta5cpUY-kzSK7y4/setWebhook?url=https://gh-rossmann-bot.herokuapp.com/
-#
-# send message
-#
-#https://api.telegram.org/bot1643763356:AAHDHaS1qGa34XkcOgYWta5cpUY-kzSK7y4/sendMessage?chat_id=823327889&text=Hi Gabriel!
+TOKEN = 'YOUR TOKEN HERE'
+bot = telegram.Bot(token=TOKEN)
 
 def send_message(chat_id, text):
 
@@ -104,9 +89,9 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
+
 	if request.method == "POST":
 		message = request.get_json()
-
 		chat_id, store_id = parse_message(message)
 
 		if store_id != "error":
@@ -121,21 +106,35 @@ def index():
 				d2 = d1[["store", "prediction"]].groupby("store").sum().reset_index()
 
 				#send message
-				msg = "Store Number {} will sell €{:,.2f} in the next 6 weeks".format(d2["store"].values[0], d2["prediction"].values[0])
+				intro = 'Sales prediction for store {} will be generated...'.format(d2['store'].values[0])
+				send_message(chat_id, intro)
 
+				# send lineplot
+				fig = plt.figure()
+				sns.lineplot(x = 'week_of_year', y = 'prediction', data = d1)
+				plt.title('Weekly Sales Prediction for Store {}'.format(d2['store'].values[0]))
+				plt.xlabel('Week Year')
+				plt.ylabel('Sales Prediction (€)')
+				buffer = BytesIO()
+				fig.savefig(buffer, format='png')
+				buffer.seek(0)
+				bot.send_photo(chat_id=chat_id, photo=buffer)
+				# send intro message
+				msg = 'Store {} will sell {:,.2f} € for the next six weeks. To generate sales prediction for another store, please insert a new store ID.'.format(d2['store'].values[0],d2['prediction'].values[0])
 				send_message(chat_id, msg)
-				return Response("Ok", status = 200)
+
+				return Response('Ok', status = 200)
 
 			else:
-				send_message(chat_id, "Store Not Available")
+				send_message(chat_id, "Sorry, predictions for this store ID is not available.")
 				return Response("Ok", status = 200)
 
 		else:
-			send_message(chat_id, "Sorry, but the Store ID is wrong.")
+			send_message(chat_id, "Hello! Please, insert a store ID (a number between 1 and 1115) to generate the sales prediction for the next six weeks. Any other message will return this message. Thank you!")
 			return Response("Ok", status = 200)
 
 	else:
-		return "<h1> Rossmann Telegram BOT </h1>"
+		return "<h1> Gabriel Hermsen Rossmann Telegram BOT </h1>"
 
 if __name__ == "__main__":
 	port = os.environ.get("PORT", 5000)
