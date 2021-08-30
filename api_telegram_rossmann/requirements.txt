@@ -36,7 +36,6 @@ Pygments==2.3.1
 pyparsing==2.4.7
 pyrsistent==0.15.5
 python-dateutil==2.7.3
-python-telegram-bot==13.7
 pytz==2019.3
 PyYAML==5.3.1
 pyzmq==18.1.1
